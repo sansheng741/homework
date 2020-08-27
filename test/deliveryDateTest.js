@@ -29,3 +29,10 @@ test('should return 4 when deliveryDate given Rush is false and deliveryState is
   const result = deliveryDate(anOrder, isRush);
   t.is(result, 4);
 });
+
+test('should return 5 when deliveryDate given Rush is false and deliveryState is ME', t => {
+  let anOrder = {deliveryState : 'ME', placedOn : {plusDays : (x) => {return x}}}
+  let isRush = false;
+  const result = deliveryDate(anOrder, isRush);
+  t.is(result, 5);
+});
