@@ -4,23 +4,7 @@ function deliveryDate (anOrder, isRush) {
     return anOrder.placedOn.plusDays(1 + deliveryTime);
   }
   else {
-    let deliveryTime;
-    if ([
-      'MA',
-      'CT',
-      'NY',
-    ].includes(anOrder.deliveryState)) {
-      deliveryTime = 2;
-    }
-    else if ([
-      'ME',
-      'NH',
-    ].includes(anOrder.deliveryState)) {
-      deliveryTime = 3;
-    }
-    else {
-      deliveryTime = 4;
-    }
+    let deliveryTime = calcDeliveryTime(anOrder);
     return anOrder.placedOn.plusDays(2 + deliveryTime);
   }
 }
@@ -40,6 +24,25 @@ function calcRushDeliveryTime(anOrder){
     }
   }
   return deliveryTime = 3;
+}
+
+const deliveryTimeHandlers = [
+  function(anOrder){
+    return  ['MA','CT','NY',].includes(anOrder.deliveryState) ? 2 : 0;
+  },
+  function(anOrder){
+    return ['ME','NH',].includes(anOrder.deliveryState) ? 3 : 0;
+  }
+]
+function calcDeliveryTime(anOrder){
+  let deliveryTime = 0;
+  for(deliveryTimeHandler of deliveryTimeHandlers){
+      let deliveryTime = deliveryTimeHandler(anOrder);
+      if(deliveryTime != 0){
+        return deliveryTime;
+      }
+    }
+  return deliveryTime = 4;
 }
 module.exports = {
   deliveryDate,
