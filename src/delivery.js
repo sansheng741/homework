@@ -24,24 +24,22 @@ function deliveryDate (anOrder, isRush) {
     return anOrder.placedOn.plusDays(2 + deliveryTime);
   }
 }
-
+const rushDeliveryTimeHandlers = [
+  function(anOrder){
+    return  ['MA','CT',].includes(anOrder.deliveryState) ? 1 : 0;
+  },
+  function(anOrder){
+    return ['NY','NH',].includes(anOrder.deliveryState) ? 2 : 0;
+  }
+]
 function calcRushDeliveryTime(anOrder){
-    if ([
-      'MA',
-      'CT',
-    ].includes(anOrder.deliveryState)) {
-      deliveryTime = 1;
+  for(rushDeliveryTimeHandler of rushDeliveryTimeHandlers){
+    let deliveryTime = rushDeliveryTimeHandler(anOrder);
+    if(deliveryTime != 0){
+      return deliveryTime;
     }
-    else if ([
-      'NY',
-      'NH',
-    ].includes(anOrder.deliveryState)) {
-      deliveryTime = 2;
-    }
-    else {
-      deliveryTime = 3;
-    }
-    return deliveryTime;
+  }
+  return deliveryTime = 3;
 }
 module.exports = {
   deliveryDate,
