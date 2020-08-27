@@ -15,3 +15,8 @@ test('should throw exception when new employee given name and error type', t => 
     t.is(e.message,'Employee cannot be of type x');
   }
 });
+
+test('should return correct string when employee.toString given employee', t => {
+  let employee = new Employee('lisi','engineer');
+  t.is(employee.toString(), 'lisi (engineer)');
+});
