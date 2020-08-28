@@ -9,10 +9,12 @@ test('should return print result when printOwing given customer and borderSpacin
       {amount : 1}
     ]
    }
+   const today = new Date();
+   let date = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
    t.is(printOwing(data) ,'***********************\n' +
                            '**** Customer Owes ****\n' +
                            '***********************\n' +
                            'name: colin\n'  +
                            'amount: 1\n' +
-                           'amount: 9/27/2020\n');
+                           `amount: ${date.toLocaleDateString()}\n`);
 })
