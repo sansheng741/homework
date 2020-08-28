@@ -198,3 +198,46 @@ rankTest('should return A when rating give.zone china and voyage.length 18 and h
   const result = rating(voyage, history);
   t.is(result,'A');
 });
+
+rankTest('should return A when rating give.zone china and voyage.length 10 and history.length 8', t => {
+  const voyage = {
+        zone: 'china',
+        length: 10,
+    };
+const history = [
+  {
+    zone: 'china',
+    profit: 1,
+  },
+  {
+    zone: 'west-indies1',
+    profit: 1,
+  },
+  {
+    zone: 'east-indies',
+    profit: 6,
+  },
+  {
+    zone: 'west-indies',
+    profit: 18,
+  },
+  {
+    zone: 'china',
+    profit: -1,
+  },
+  {
+    zone: 'west-indies2',
+    profit: 1,
+  },
+  {
+    zone: 'west-indies3',
+    profit: 1,
+  },
+  {
+    zone: 'west-indies',
+    profit: 1,
+  }
+];
+  const result = rating(voyage, history);
+  t.is(result,'A');
+});
