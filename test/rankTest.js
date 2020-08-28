@@ -1,5 +1,5 @@
 const rankTest = require('ava');
-const {voyageRisk, voyageProfitFactor} = require('../src/rank');
+const {voyageRisk, voyageProfitFactor, captainHistoryRisk, rating} = require('../src/rank');
 
 rankTest('foo', t => {
   t.pass();
@@ -128,4 +128,73 @@ rankTest('should return 3 when voyageProfitFactor give.zone east-indies and voya
   ];
   const result = voyageProfitFactor(voyage, history);
   t.is(result,3);
+});
+
+rankTest('should return 4 when captainHistoryRisk give.zone china and history.length 4', t => {
+  const voyage = {
+      zone: 'china',
+      length: 15,
+  };
+  const history = [
+    {
+      zone: 'china',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: -15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    }
+  ];
+  const result = captainHistoryRisk(voyage, history);
+  t.is(result,4);
+});
+
+rankTest('should return A when rating give.zone china and voyage.length 18 and history.length 11', t => {
+  const voyage = {
+        zone: 'china',
+        length: 18,
+    };
+    const history = [
+      {
+        zone: 'east-indies',
+        profit: 5,
+      },{
+        zone: 'west-indies',
+        profit: 15,
+      },{
+        zone: 'china',
+        profit: -2,
+      },{
+        zone: 'west-africa',
+        profit: 7,
+      },{
+        zone: 'west-africa',
+        profit: 7,
+      },{
+        zone: 'west-africa',
+        profit: 7,
+      },{
+        zone: 'west-africa',
+        profit: 7,
+      },{
+        zone: 'west-africa',
+        profit: 7,
+      },{
+        zone: 'west-africa',
+        profit: 7,
+      },{
+        zone: 'west-africa',
+        profit: 7,
+      },{
+        zone: 'west-africa',
+        profit: 7,
+      },
+    ];
+  const result = rating(voyage, history);
+  t.is(result,'A');
 });

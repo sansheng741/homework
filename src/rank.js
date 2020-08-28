@@ -101,5 +101,7 @@ const myRating = rating(voyage, history);
 console.log(`myRating: ${myRating}`);
 module.exports = {
   voyageRisk,
-  voyageProfitFactor
+  voyageProfitFactor,
+  captainHistoryRisk,
+  rating
 }
