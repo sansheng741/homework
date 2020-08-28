@@ -27,3 +27,15 @@ rankTest('should return 3 when voyageRisk given voyage.zone null and voyage.leng
   const result = voyageRisk(voyage);
   t.is(result,3);
 });
+
+rankTest('should return 4 when voyageRisk given voyage.zone null and voyage.length 9', t => {
+  const voyage = {
+    zone: '',
+    length: 9,
+  };
+  const result = voyageRisk(voyage);
+  t.is(result,4);
+});
+
+
+
