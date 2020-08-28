@@ -1,7 +1,6 @@
 function printOwing (invoice) {
-  let outstanding = calcOutstanding(invoice.borderSpacing);
-  calcDate(invoice);
-  return printTxt({outstanding,invoice});
+  let data = generateData(invoice);
+  return printTxt(data);
 }
 function printTxt(data){
 let result = '***********************\n'+
@@ -18,6 +17,12 @@ let result = '***********************\n'+
   result += `amount: ${data.outstanding}\n`;
   result += `amount: ${data.invoice.dueDate.toLocaleDateString()}\n`;
   return result;
+}
+
+function generateData(invoice){
+  let outstanding = calcOutstanding(invoice.borderSpacing);
+  calcDate(invoice);
+  return {outstanding,invoice}
 }
 
 function calcDate(invoice){
