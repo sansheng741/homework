@@ -1,25 +1,26 @@
 function printOwing (invoice) {
-  let outstanding = 0;
-  let result = '***********************\n'+
+  outstanding = calcOutstanding(invoice.borderSpacing);
+  return printTxt({outstanding,invoice});
+}
+function printTxt(data){
+let result = '***********************\n'+
   '**** Customer Owes ****\n'+
   '***********************\n';
   console.log('***********************');
   console.log('**** Customer Owes ****');
   console.log('***********************');
 
-  outstanding = calcOutstanding(invoice.borderSpacing);
-
   // record due date
   const today = new Date();
-  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+  data.invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 
   // print details
-  console.log(`name: ${invoice.customer}`);
-  console.log(`amount: ${outstanding}`);
-  console.log(`amount: ${invoice.dueDate.toLocaleDateString()}`);
-  result += `name: ${invoice.customer}\n`;
-  result += `amount: ${outstanding}\n`;
-  result += `amount: ${invoice.dueDate.toLocaleDateString()}\n`;
+  console.log(`name: ${data.invoice.customer}`);
+  console.log(`amount: ${data.outstanding}`);
+  console.log(`amount: ${data.invoice.dueDate.toLocaleDateString()}`);
+  result += `name: ${data.invoice.customer}\n`;
+  result += `amount: ${data.outstanding}\n`;
+  result += `amount: ${data.invoice.dueDate.toLocaleDateString()}\n`;
   return result;
 }
 
