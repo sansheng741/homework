@@ -1,5 +1,6 @@
 function printOwing (invoice) {
-  outstanding = calcOutstanding(invoice.borderSpacing);
+  let outstanding = calcOutstanding(invoice.borderSpacing);
+  calcDate(invoice);
   return printTxt({outstanding,invoice});
 }
 function printTxt(data){
@@ -10,11 +11,6 @@ let result = '***********************\n'+
   console.log('**** Customer Owes ****');
   console.log('***********************');
 
-  // record due date
-  const today = new Date();
-  data.invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
-
-  // print details
   console.log(`name: ${data.invoice.customer}`);
   console.log(`amount: ${data.outstanding}`);
   console.log(`amount: ${data.invoice.dueDate.toLocaleDateString()}`);
@@ -22,6 +18,11 @@ let result = '***********************\n'+
   result += `amount: ${data.outstanding}\n`;
   result += `amount: ${data.invoice.dueDate.toLocaleDateString()}\n`;
   return result;
+}
+
+function calcDate(invoice){
+   const today = new Date();
+   invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 }
 
 function calcOutstanding(borderSpacing){
