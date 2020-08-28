@@ -90,3 +90,42 @@ rankTest('should return 7 when voyageProfitFactor give.zone china and voyage.len
   const result = voyageProfitFactor(voyage, history);
   t.is(result,7);
 });
+
+rankTest('should return 3 when voyageProfitFactor give.zone east-indies and voyage.length 15 and history.length 9', t => {
+  const voyage = {
+      zone: 'east-indies',
+      length: 15,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 5,
+    },{
+      zone: 'west-indies',
+      profit: 15,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    },{
+      zone: 'west-africa',
+      profit: 7,
+    }
+  ];
+  const result = voyageProfitFactor(voyage, history);
+  t.is(result,3);
+});
